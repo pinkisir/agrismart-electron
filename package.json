@@ -1,0 +1,40 @@
+{
+  "name": "agrismart",
+  "version": "0.1.0",
+  "description": "智慧农业物联网控制终端",
+  "main": "main.js",
+  "author": {
+    "name": "AgriSmart Team",
+    "email": "support@agrismart.com"
+  },
+  "homepage": "https://agrismart.com",
+  "scripts": {
+    "start": "electron .",
+    "build:linux": "electron-builder --linux deb --arm64",
+    "build:appimage": "electron-builder --linux AppImage --arm64",
+    "build:dir": "electron-builder --linux dir --arm64"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.agrismart.controller",
+    "productName": "AgriSmart",
+    "directories": {
+      "output": "release"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "deb",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "category": "Utility",
+      "icon": "assets/icons/"
+    }
+  }
+}
