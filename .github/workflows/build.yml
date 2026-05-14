@@ -38,6 +38,8 @@ jobs:
           run: |
             node --version
             npm --version
+            npm config set electron_mirror https://npmmirror.com/mirrors/electron/
+            rm -rf /root/.cache/electron
             npm ci
             npm run build:linux
 
