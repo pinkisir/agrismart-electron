@@ -39,7 +39,12 @@ jobs:
             node --version
             npm --version
             npm config set electron_mirror https://npmmirror.com/mirrors/electron/
-            rm -rf /root/.cache/electron
+            export npm_config_cache="$PWD/.npm-cache"
+            export npm_config_electron_cache="$PWD/.electron-cache"
+            export ELECTRON_CACHE="$PWD/.electron-cache"
+            export XDG_CACHE_HOME="$PWD/.cache"
+            mkdir -p "$npm_config_cache" "$ELECTRON_CACHE" "$XDG_CACHE_HOME"
+            chmod -R 777 "$npm_config_cache" "$ELECTRON_CACHE" "$XDG_CACHE_HOME"
             npm ci
             npm run build:linux
 

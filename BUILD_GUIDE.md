@@ -72,6 +72,13 @@ jobs:
             curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-arm64.tar.xz -o /tmp/node.tar.xz
             tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1
           run: |
+            npm config set electron_mirror https://npmmirror.com/mirrors/electron/
+            export npm_config_cache="$PWD/.npm-cache"
+            export npm_config_electron_cache="$PWD/.electron-cache"
+            export ELECTRON_CACHE="$PWD/.electron-cache"
+            export XDG_CACHE_HOME="$PWD/.cache"
+            mkdir -p "$npm_config_cache" "$ELECTRON_CACHE" "$XDG_CACHE_HOME"
+            chmod -R 777 "$npm_config_cache" "$ELECTRON_CACHE" "$XDG_CACHE_HOME"
             npm ci
             npm run build:linux
 ```
