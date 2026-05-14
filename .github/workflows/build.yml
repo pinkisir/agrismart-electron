@@ -32,8 +32,9 @@ jobs:
           install: |
             apt-get update
             apt-get install -y curl ca-certificates build-essential fakeroot dpkg rpm libarchive-tools
-            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-            apt-get install -y nodejs
+            curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-arm64.tar.xz -o /tmp/node.tar.xz
+            tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1
+            corepack disable || true
           run: |
             node --version
             npm --version

@@ -66,6 +66,11 @@ jobs:
         with:
           arch: aarch64
           distro: ubuntu18.04
+          install: |
+            apt-get update
+            apt-get install -y curl ca-certificates build-essential fakeroot dpkg rpm libarchive-tools
+            curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-arm64.tar.xz -o /tmp/node.tar.xz
+            tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1
           run: |
             npm ci
             npm run build:linux

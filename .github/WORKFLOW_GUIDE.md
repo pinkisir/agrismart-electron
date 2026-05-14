@@ -28,7 +28,7 @@ GitHub Actions 是 GitHub 提供的 CI/CD 工具，可以自动执行构建、�
     ↓
 进入 Ubuntu 18.04 ARM64 环境
     ↓
-安装 Node.js 18 和依赖 (npm ci)
+安装 Node.js 16 和依赖 (npm ci)
     ↓
 打包 ARM64 .deb (npm run build:linux)
     ↓
