@@ -10,7 +10,7 @@
   "homepage": "https://agrismart.com",
   "scripts": {
     "start": "electron .",
-    "build:linux": "electron-builder --linux deb --arm64",
+    "build:linux": "electron-builder --linux dir --arm64 && bash scripts/package-deb.sh",
     "build:appimage": "electron-builder --linux AppImage --arm64",
     "build:dir": "electron-builder --linux dir --arm64"
   },

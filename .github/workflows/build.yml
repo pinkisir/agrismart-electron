@@ -31,13 +31,20 @@ jobs:
           githubToken: ${{ github.token }}
           install: |
             apt-get update
-            apt-get install -y curl ca-certificates build-essential fakeroot dpkg rpm libarchive-tools
+            apt-get install -y curl ca-certificates build-essential fakeroot dpkg
+            touch /root/.npmrc
+            chmod 666 /root/.npmrc
+            chmod 755 /root
             curl -fsSL https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-arm64.tar.xz -o /tmp/node.tar.xz
             tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1
             corepack disable || true
           run: |
             node --version
             npm --version
+            export HOME="$PWD"
+            export npm_config_userconfig="$PWD/.npmrc"
+            export NPM_CONFIG_USERCONFIG="$PWD/.npmrc"
+            touch "$NPM_CONFIG_USERCONFIG"
             npm config set electron_mirror https://npmmirror.com/mirrors/electron/
             export npm_config_cache="$PWD/.npm-cache"
             export npm_config_electron_cache="$PWD/.electron-cache"
